@@ -22,8 +22,8 @@ public class PatientController {
     public List<Patient> all() { return service.findAll(); }
 
     @GetMapping("/{id}")
-    public Patient byEmployeeId(@PathVariable String id) {
-        return service.findByEmployeeId(id);
+    public Patient byPatientId(@PathVariable String id) {
+        return service.findByPatientId(id);
     }
 
     @DeleteMapping("/{id}")
@@ -35,8 +35,14 @@ public class PatientController {
     public void updateEmail(@PathVariable String id, @RequestParam String email) {//use id to find person, take in new email value
         service.updateEmail(id, email);
     }
+
     @PutMapping("/name/{id}")
-    public void updateName(@PathVariable String id, @RequestParam String name) {//use id to find person, take in new email value
+    public void updateName(@PathVariable String id, @RequestParam String name) {//use id to find person, take in new name value
         service.updateName(id, name);//call update name function to change the name
+    }
+
+    @PutMapping("/DOB/{id}")
+    public void updateDOB(@PathVariable String id, @RequestParam String DOB) {//use id to find person, take in new DOB value
+        service.updateDOB(id, DOB);//call update name function to change the DOB
     }
 }

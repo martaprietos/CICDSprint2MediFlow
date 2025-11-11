@@ -17,9 +17,7 @@ public class Patient {
     private Long id;
     private String name;
     private String email;
-    private String employeeId;
-    private String position;
-    private String department;
+    private String patientId;
 
     public Long getId() {
         return id;
@@ -45,27 +43,11 @@ public class Patient {
         this.email = email;
     }
 
-    public String getEmployeeId() {
-        return employeeId;
+    public String getPatientId() {
+        return patientId;
     }
 
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 }
