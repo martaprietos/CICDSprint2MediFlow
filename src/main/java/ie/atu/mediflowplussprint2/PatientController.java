@@ -32,7 +32,11 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable String id, @RequestParam String email) {//use id to find person, take in new email value
-        service.update(id, email);
+    public void updateEmail(@PathVariable String id, @RequestParam String email) {//use id to find person, take in new email value
+        service.updateEmail(id, email);
+    }
+    @PutMapping("/name/{id}")
+    public void updateName(@PathVariable String id, @RequestParam String name) {//use id to find person, take in new email value
+        service.updateName(id, name);//call update name function to change the name
     }
 }

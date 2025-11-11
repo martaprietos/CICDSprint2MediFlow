@@ -17,14 +17,21 @@ public class PatientService {
     }
 
     public Patient delete(String id) {
-        Patient patient = repo.findByEmployeeId(id).orElseThrow(() -> new IllegalArgumentException("Person not found"));;
-        repo.delete(patient);//delete person with corresponding id
+        Patient patient = repo.findByEmployeeId(id).orElseThrow(() -> new IllegalArgumentException("Patient not found"));;
+        repo.delete(patient);//delete patient with corresponding id
         return patient;
     }
 
-    public Patient update(String id, String email) {
-        Patient patient = repo.findByEmployeeId(id).orElseThrow(() -> new IllegalArgumentException("Person not found"));;
+    public Patient updateEmail(String id, String email) {
+        Patient patient = repo.findByEmployeeId(id).orElseThrow(() -> new IllegalArgumentException("Patient not found"));;
         patient.setEmail(email);//use setter to change email
+        repo.save(patient);//put patient back into database
+        return patient; //return patient information
+    }
+
+    public Patient updateName(String id, String name) {
+        Patient patient = repo.findByEmployeeId(id).orElseThrow(() -> new IllegalArgumentException("Patient not found"));;
+        patient.setName(name);//use setter to change name
         repo.save(patient);//put person back into database
         return patient; //return patient information
     }
