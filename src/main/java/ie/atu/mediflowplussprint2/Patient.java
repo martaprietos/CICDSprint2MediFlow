@@ -59,9 +59,10 @@ public class Patient {
         DOB = DOB1;
     }
 
-    public Patient( String patientId, String name, String email) {
+    public Patient( String patientId, String name, String email, String DOB) {
         this.patientId = patientId;
         this.name = name;
         this.email = email;
+        this.DOB = DOB;
     }
 }
