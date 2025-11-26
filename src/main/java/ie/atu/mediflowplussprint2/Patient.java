@@ -18,6 +18,7 @@ public class Patient {
     private String name;
     private String email;
     private String patientId;
+    private String DOB;
 
     public Long getId() {
         return id;
@@ -48,6 +49,19 @@ public class Patient {
     }
 
     public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getDOB() {
+        return DOB;
+    }
+    public void setDOB(String DOB1) {
+        DOB = DOB1;
+    }
+
+    public Patient( String name, String email, String patientId) {
+        this.name = name;
+        this.email = email;
         this.patientId = patientId;
     }
 }
