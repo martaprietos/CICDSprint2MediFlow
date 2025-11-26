@@ -40,7 +40,7 @@ public class PatientService {
 
     public Optional<Patient> updateDOB(String id, String DOB) {
         Patient patient = repo.findByPatientId(id).orElseThrow(() -> new IllegalArgumentException("Patient not found"));;
-        patient.setName(DOB);//use setter to change name
+        patient.setDOB(DOB);//use setter to change name
         repo.save(patient);//put person back into database
         return Optional.of(patient); //return patient information
     }
