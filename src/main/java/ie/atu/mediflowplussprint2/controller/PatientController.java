@@ -1,5 +1,7 @@
-package ie.atu.mediflowplussprint2;
+package ie.atu.mediflowplussprint2.controller;
 
+import ie.atu.mediflowplussprint2.Patient;
+import ie.atu.mediflowplussprint2.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
