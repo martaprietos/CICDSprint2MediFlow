@@ -18,11 +18,11 @@ public class Patient {
     private String email;
     private String DOB;
 
-    public String getId() {
+    public String getUsername() {
         return username;
     }
 
-    public void setId(String id) {
+    public void setUsername(String id) {
         this.username = id;
     }
 
