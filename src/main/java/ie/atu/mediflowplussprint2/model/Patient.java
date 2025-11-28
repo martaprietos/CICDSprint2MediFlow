@@ -8,24 +8,22 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String username;
     private String name;
     private String email;
-    private String patientId;
     private String DOB;
 
-    public Long getId() {
-        return id;
+    public String getId() {
+        return username;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String id) {
+        this.username = id;
     }
 
     public String getName() {
@@ -44,14 +42,6 @@ public class Patient {
         this.email = email;
     }
 
-    public String getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
-    }
-
     public String getDOB() {
         return DOB;
     }
@@ -59,8 +49,8 @@ public class Patient {
         DOB = DOB1;
     }
 
-    public Patient( String patientId, String name, String email, String DOB) {
-        this.patientId = patientId;
+    public Patient(String userN, String name, String email, String DOB) {
+        this.username = userN;
         this.name = name;
         this.email = email;
         this.DOB = DOB;
