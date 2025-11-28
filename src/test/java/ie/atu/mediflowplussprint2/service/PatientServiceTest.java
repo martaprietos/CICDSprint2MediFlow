@@ -23,7 +23,7 @@ public class PatientServiceTest {
 
     @Test
     void createThenFindById() {
-        Patient p = new Patient("P1", "Paul", "paul@atu.ie", "02-02-2000");
+        Patient p = new Patient("P1", "Paul", "paul@atu.ie", "02-02-2000", "Male", "home", "phone", "`mike");
         when(repo.save(p)).thenReturn(p); //when save called, return patient
         when(repo.findByUsername("P1")).thenReturn(Optional.of(p));//mock that when id is found, return patient information
         service.create(p);
@@ -41,7 +41,7 @@ public class PatientServiceTest {
 
     @Test
     void deleteSuccess() {
-        Patient p = new Patient("P1", "Bob", "bob@atu.ie", "02-20-2000");
+        Patient p = new Patient("P1", "Bob", "bob@atu.ie", "02-20-2000", "Male", "home", "phone", "`mike");
         when(repo.findByUsername("P1")).thenReturn(Optional.of(p));
         Patient deleted = service.delete("P1");
         verify(repo).delete(p);//make sure delete was called
@@ -57,7 +57,7 @@ public class PatientServiceTest {
 
     @Test
     void updateEmailSuccess() {
-        Patient p = new Patient("P1", "Bob", "bob@atu.ie", "02-02-2000");
+        Patient p = new Patient("P1", "Bob", "bob@atu.ie", "02-02-2000", "Male", "home", "phone", "`mike");
         //mock finding and saving
         when(repo.findByUsername("P1")).thenReturn(Optional.of(p));
         when(repo.save(p)).thenReturn(p);//store then return
@@ -75,7 +75,7 @@ public class PatientServiceTest {
 
     @Test
     void updateNameSuccess() {
-        Patient p = new Patient("P1", "Mike", "mike@atu.ie", "02-02-2000");
+        Patient p = new Patient("P1", "Mike", "mike@atu.ie", "02-02-2000", "Male", "home", "phone", "`mike");
         when(repo.findByUsername("P1")).thenReturn(Optional.of(p));
         when(repo.save(p)).thenReturn(p);
         Optional<Patient> updated = service.updateName("P1", "NewName");
@@ -85,7 +85,7 @@ public class PatientServiceTest {
 
     @Test
     void updateDOBSuccess() {
-        Patient p = new Patient("P1", "Mike", "mike@atu.ie", "20-20-2000");
+        Patient p = new Patient("P1", "Mike", "mike@atu.ie", "20-20-2000", "Male", "home", "phone", "`mike");
         when(repo.findByUsername("P1")).thenReturn(Optional.of(p));
         when(repo.save(p)).thenReturn(p);
         Optional<Patient> updated = service.updateDOB("P1", "20-02-1999");

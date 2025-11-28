@@ -24,27 +24,27 @@ public class PatientController {
     public List<Patient> all() { return service.findAll(); }
 
     @GetMapping("/{user}")
-    public Patient byUsername(@PathVariable String user) {
+    public Patient byUsername(@Valid @PathVariable String user) {
         return service.findByUsername(user);
     }
 
     @DeleteMapping("/{user}")
-    public void delete(@PathVariable String user) {
+    public void delete(@Valid@PathVariable String user) {
         service.delete(user);
     }
 
     @PutMapping("/{user}")
-    public void updateEmail(@PathVariable String user, @RequestParam String email) {//use id to find person, take in new email value
+    public void updateEmail(@Valid@PathVariable String user, @Valid@RequestParam String email) {//use id to find person, take in new email value
         service.updateEmail(user, email);
     }
 
     @PutMapping("/name/{user}")
-    public void updateName(@PathVariable String user, @RequestParam String name) {//use id to find person, take in new name value
+    public void updateName(@Valid@PathVariable String user, @Valid@RequestParam String name) {//use id to find person, take in new name value
         service.updateName(user, name);//call update name function to change the name
     }
 
     @PutMapping("/DOB/{user}")
-    public void updateDOB(@PathVariable String user, @RequestParam String DOB) {//use id to find person, take in new DOB value
+    public void updateDOB(@Valid@PathVariable String user, @Valid@RequestParam String DOB) {//use id to find person, take in new DOB value
         service.updateDOB(user, DOB);//call update name function to change the DOB
     }
 }
