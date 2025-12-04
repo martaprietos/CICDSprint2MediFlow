@@ -1,9 +1,7 @@
 package ie.atu.mediflowplussprint2.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Entity
@@ -16,29 +14,42 @@ import lombok.*;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
+    @NotNull(message = "Username cannot be empty")
     @Size(max = 40, min = 3)
     private String username;
-    @NotBlank
+
+    @NotNull(message = "Name cannot be empty")
     @Size(max = 40, min = 3)
     private String name;
-    @NotBlank
+
+    @NotNull(message = "Email cannot be empty")
     @Size(max = 40, min = 3)
     @Email
     private String email;
-    @NotBlank
+
+    @NotNull(message = "Date of birth cannot be empty")
     @Size(max = 40, min = 3)
+    @Past(message = "Date of birth must be past")
+    @Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$", message = "Date of birth must be in the format DD/MM/YYYY")
     private String DOB;
-    @NotBlank
+
+    @NotNull(message = "Gender cannot be empty")
     @Size(max = 40, min = 3)
     private String gender;
-    @NotBlank
+
+    @NotNull(message = "Address cannot be empty")
     @Size(max = 6, min = 4)
     private String address;
-    @NotBlank
+
+    @NotNull(message = "Phone cannot be empty")
     @Size(max = 40, min = 3)
+    @Pattern(
+            regexp = "^[+]?\\d[\\d\\s-]{7,14}$",
+            message = "Phone number format is invalid"
+    )
     private String phone;
-    @NotBlank
+
+    @NotNull(message = "Doctor cannot be empty")
     @Size(max = 40, min = 5)
     private String doctor;
 
@@ -69,6 +80,7 @@ public class Patient {
     public String getDOB() {
         return DOB;
     }
+
     public void setDOB(String DOB1) {
         DOB = DOB1;
     }

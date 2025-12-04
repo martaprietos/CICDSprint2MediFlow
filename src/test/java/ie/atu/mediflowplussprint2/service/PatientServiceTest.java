@@ -20,7 +20,7 @@ public class PatientServiceTest {
     void setup() {
         repo = mock(PatientRepository.class); //setup mock to prevent accessing the real databse
         service = new PatientService(repo); // inject the mocked repo into service
-        p = new Patient("P1", "Mike", "mike@atu.ie", "20-20-2000", "Male", "home", "phone", "mike");
+        p = new Patient("P1", "Mike", "mike@atu.ie", "20-20-2000", "Male", "home", "321-321-4567", "mike");
     }
 
     @Test
@@ -134,6 +134,22 @@ public class PatientServiceTest {
         when(repo.findByUsername("P1")).thenReturn(Optional.empty());
         assertThrows(IllegalArgumentException.class,
                 () -> service.updateAddress("P1", "34 Eyre Square"));
+    }
+
+    @Test
+    void updatePhoneSuccess() {
+        when(repo.findByUsername("P1")).thenReturn(Optional.of(p));
+        when(repo.save(p)).thenReturn(p);
+        Optional<Patient> updated = service.updateAddress("P1", "555-123-4567");
+        assertTrue(updated.isPresent());
+        assertEquals("555-123-4567", updated.get().getAddress());
+    }
+
+    @Test
+    void updatePhoneFail(){
+        when(repo.findByUsername("P1")).thenReturn(Optional.empty());
+        assertThrows(IllegalArgumentException.class,
+                () -> service.updateAddress("P1", "436342"));
     }
 }
 
