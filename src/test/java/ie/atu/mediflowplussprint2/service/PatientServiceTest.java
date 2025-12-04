@@ -108,9 +108,9 @@ public class PatientServiceTest {
     void updateGenderSuccess() {
         when(repo.findByUsername("P1")).thenReturn(Optional.of(p));
         when(repo.save(p)).thenReturn(p);
-        Optional<Patient> updated = service.updateDOB("P1", "20-02-1999");
+        Optional<Patient> updated = service.updateGender("P1", "New");
         assertTrue(updated.isPresent());
-        assertEquals("20-02-1999", updated.get().getDOB());
+        assertEquals("New", updated.get().getGender());
     }
 
     @Test
@@ -118,6 +118,22 @@ public class PatientServiceTest {
         when(repo.findByUsername("P1")).thenReturn(Optional.empty());
         assertThrows(IllegalArgumentException.class,
                 () -> service.updateGender("P1", "New"));
+    }
+
+    @Test
+    void updateAddressSuccess() {
+        when(repo.findByUsername("P1")).thenReturn(Optional.of(p));
+        when(repo.save(p)).thenReturn(p);
+        Optional<Patient> updated = service.updateAddress("P1", "34 Eyre Square");
+        assertTrue(updated.isPresent());
+        assertEquals("34 Eyre Square", updated.get().getAddress());
+    }
+
+    @Test
+    void updateAddressFail(){
+        when(repo.findByUsername("P1")).thenReturn(Optional.empty());
+        assertThrows(IllegalArgumentException.class,
+                () -> service.updateAddress("P1", "34 Eyre Square"));
     }
 }
 

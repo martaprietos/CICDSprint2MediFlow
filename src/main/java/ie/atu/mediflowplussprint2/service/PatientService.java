@@ -13,8 +13,11 @@ public class PatientService {
     public PatientService(PatientRepository repo) {
         this.repo = repo;
     }
+
     public Patient create(Patient p) { return repo.save(p); }
+
     public List<Patient> findAll() { return repo.findAll(); }
+
     public Patient findByUsername(String user) {
         return repo.findByUsername(user) //find by the provided id or return an error
                 .orElseThrow(() -> new IllegalArgumentException("Patient not found"));
@@ -50,6 +53,13 @@ public class PatientService {
     public Optional<Patient> updateGender(String user, String gender) {
         Patient patient = repo.findByUsername(user).orElseThrow(() -> new IllegalArgumentException("Patient not found"));;
         patient.setGender(gender);//use setter to change name
+        repo.save(patient);//put person back into database
+        return Optional.of(patient); //return patient information
+    }
+
+    public Optional<Patient> updateAddress(String user, String address) {
+        Patient patient = repo.findByUsername(user).orElseThrow(() -> new IllegalArgumentException("Patient not found"));;
+        patient.setAddress(address);//use setter to change name
         repo.save(patient);//put person back into database
         return Optional.of(patient); //return patient information
     }
